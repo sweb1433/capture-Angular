@@ -5,9 +5,20 @@
      </div>
      <div class="pb-2">
       <button class="btn btn-primary" (click)="capture()">Capture Image</button>
+      <p *ngIf="!isShowDivIfWait">Successfully captured image. Please wait while we evaluate the dimensions</p>
+      <button *ngIf="!isShowDivIfButton" (click)=toggleDisplayDivIf() >Calculate Pages from the image.</button>
+      <div *ngIf="!isShowDivIf">
+         <label for="width" style="text-decoration: dotted;">
+            Width
+         </label>
+         <p id="width">width of the diary captured in image is : 18.5mm</p>
+         <p>Total number of pages(roughly) is 188</p>
+      </div>
     </div>
      <div class="p-1">
         <canvas #canvas class="vid"></canvas>
      </div>
   </div>
 </div>
+
+

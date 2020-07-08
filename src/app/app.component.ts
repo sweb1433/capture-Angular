@@ -21,6 +21,13 @@ export class AppComponent implements OnInit {
   @ViewChild('video', { static: true }) videoElement: ElementRef;
   @ViewChild('canvas', { static: true }) canvas: ElementRef;
   constructor(private renderer: Renderer2) {}
+  isShowDivIf = true;
+  isShowDivIfButton = true;
+  isShowDivIfWait = true;
+  
+  toggleDisplayDivIf() {
+    this.isShowDivIf = !this.isShowDivIf;
+  }
     
   startCamera() {
       if (!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) { 
@@ -42,6 +49,13 @@ attachVideo(stream) {
     this.renderer.setProperty(this.canvas.nativeElement, 'width', this.videoWidth);
     this.renderer.setProperty(this.canvas.nativeElement, 'height', this.videoHeight);
     this.canvas.nativeElement.getContext('2d').drawImage(this.videoElement.nativeElement, 0, 0);
+    this.isShowDivIfWait = !this.isShowDivIfWait;
+    setTimeout (() => {
+      console.log("Hello from setTimeout");
+      this.isShowDivIfWait = !this.isShowDivIfWait;
+      this.isShowDivIfButton = !this.isShowDivIfButton;
+   }, 5000);
+    
 }
 ngOnInit() {
   this.startCamera();
